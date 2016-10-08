@@ -6,6 +6,8 @@ What is it?
 
 a Concourse resource for caching dependencies downloaded by NPM
 
+[![EXAMPLE PIPELINE](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/master/images/example-pipeline.png)](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/master/images/example-pipeline.png)
+
 Development Machine Requirements
 --------------------------------
 
