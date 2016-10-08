@@ -1,3 +1,5 @@
+Disclaimer: personal project currently is not working
+
 npm-cache-resource
 ==================
 
