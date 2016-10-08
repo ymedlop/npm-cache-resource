@@ -8,6 +8,9 @@ GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
 /opt/resource/git/in "$GIT_DEST_DIR"
 
 cd "$GIT_DEST_DIR"
+ls
+
+echo "Installing npm modules!!"
 
 NODE_ENV=development npm install
 
@@ -15,5 +18,3 @@ echo "Installed npm modules!!"
 ls
 
 cp -a node_modules "$DEST_DIR/"
-
-echo "Cached $(du -hs "$DEST_DIR/" | cut -f 1) in $(find "$DEST_DIR/" -type f | wc -l) files" >&2
