@@ -1,0 +1,16 @@
+#! /bin/bash -eu
+set -o pipefail
+
+DEST_DIR="$1"
+
+GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
+
+/opt/resource/git/in "$GIT_DEST_DIR"
+
+cd "$GIT_DEST_DIR"
+
+NODE_ENV=development npm install
+
+cp -a node_modules "$DEST_DIR/"
+
+echo "Cached $(du -hs "$DEST_DIR/" | cut -f 1) in $(find "$DEST_DIR/" -type f | wc -l) files" >&2

@@ -1,0 +1,4 @@
+#! /bin/bash -eu
+set -o pipefail
+
+/opt/resource/git/check
