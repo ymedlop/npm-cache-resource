@@ -7,12 +7,4 @@ GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
 
 /opt/resource/git/in "$GIT_DEST_DIR"
 
-cd "$GIT_DEST_DIR"
-
-echo "Installing npm modules!!"
-
-NODE_ENV=development npm install --silent
-
-echo "Installed npm modules!!"
-
-cp -a node_modules "$DEST_DIR/"
+cd "$GIT_DEST_DIR" && npm install
