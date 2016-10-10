@@ -1,4 +1,7 @@
-#! /bin/bash -eu
+#!/usr/bin/env bash
+
+[ "$TRACE" == "true" ] && set -x
+set -e
 set -o pipefail
 
 DEST_DIR="$1"
@@ -9,7 +12,10 @@ GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
 
 cd "$GIT_DEST_DIR"
 
-if [ "$http_proxy" != "" ]; then
+if [  "$http_proxy" != "" ]; then
+
+    echo "Set npm httproxy: "$http_proxy"" >&2
+
     npm config set proxy $http_proxy
     npm config set https-proxy $https_proxy
 fi
