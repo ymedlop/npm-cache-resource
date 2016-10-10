@@ -9,7 +9,14 @@ GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
 
 cd "$GIT_DEST_DIR"
 
-npm install --quiet --silent >&2
+if [ "$http_proxy" != "" ]; then
+    npm config set proxy $http_proxy
+    npm config set https-proxy $http_proxy
+fi
+
+NODE_ENV=development
+
+npm install --quiet  >&2
 
 cp -R node_modules "$DEST_DIR/"
 

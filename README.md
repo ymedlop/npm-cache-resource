@@ -21,7 +21,6 @@ resource_types:
 Source Configuration
 --------------------
 
-* `http_proxy`: Url http proxy  Used for `in` (optional).
 * `<<:`: the source is the same as the corresponding git resource
 
 ### Example
