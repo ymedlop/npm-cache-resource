@@ -10,6 +10,11 @@ GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
 
 /opt/resource/git/in "$GIT_DEST_DIR"
 
+payload=$(echo /tmp/git-resource-request.*)
+
+registry=$(jq -r '.source.registry // ""' < $payload)
+token=$(jq -r '.source.token // ""' < $payload)
+
 cd "$GIT_DEST_DIR"
 
 if [  "$http_proxy" != "" ]; then
@@ -20,10 +25,22 @@ if [  "$http_proxy" != "" ]; then
     npm config set https-proxy $https_proxy
 fi
 
-NODE_ENV=development
+if [  "$token" != "" ]; then
 
-npm install --quiet  >&2
+    echo "Set token in our .npmrc file: "$token"" >&2
+
+    echo "always-auth=true" >> ~/.npmrc
+    echo "_auth="$token"" >> ~/.npmrc
+
+    cat ~/.npmrc >&2
+fi
+
+if [  "$registry" != "" ]; then
+
+    echo "Set Private Registry: "$registry"" >&2
+    npm config set registry $registry
+fi
+
+NODE_ENV=development && npm install --quiet  >&2
 
 cp -R node_modules "$DEST_DIR/"
-
-echo "Cached $(du -hs "$DEST_DIR/" | cut -f 1) in $(find "$DEST_DIR/" -type f | wc -l) files" >&2

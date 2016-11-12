@@ -23,7 +23,17 @@ resource_types:
 Source Configuration
 --------------------
 
-* `<<:`: the source is the same as the corresponding git resource
+* `<<:`: *Required.* The source is the same as the corresponding git resource
+
+* `registry`: *Optional.* The location our private npm registry.
+* `token`: *Optional.* Our npm token.
+
+```
+Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
+Another example for a valid setup is jane:testpassword123 resulting in amFuZTp0ZXN0cGFzc3dvcmQxMjM=.
+
+In our demo we are using admin:123456 resulting in YWRtaW46MTIzNDU2
+```
 
 ### Example
 
@@ -105,49 +115,22 @@ jobs:
 
 ### `out`: Nothing to do here....
 
-
-Development Machine Requirements
---------------------------------
-
-In order for the build to run correctly, a few tools will need to be installed on your
-development machine:
-
-* Docker
-* Docker-compose
-
-
 Getting Started
 ---------------
 
-Run the following to generate the necessary keys:
-```
-mkdir -p keys/web keys/worker
+Examples...
 
-ssh-keygen -t rsa -f ./keys/web/tsa_host_key -N ''
-ssh-keygen -t rsa -f ./keys/web/session_signing_key -N ''
-
-ssh-keygen -t rsa -f ./keys/worker/worker_key -N ''
-
-cp ./keys/worker/worker_key.pub ./keys/web/authorized_worker_keys
-cp ./keys/web/tsa_host_key.pub ./keys/worker
-```
-
-
-Running The Build
------------------
-
-```
-docker-compose up
-```
-
-Next, browse to your configured external URL (probably 127.0.0.1:8080 or 192.168.99.100:8080) and log in with the username concourse and password changeme.
-
-[More info here...](https://concourse.ci/single-page.html#docker-repository)
-
+0. [Simple Example](examples/simple/README.md)
+1. [Private Registry Example](examples/private-registry/README.md)
 
 Credits:
 ========
 
 * [projectfalcon/gradle-cache-resource](https://github.com/projectfalcon/gradle-cache-resource) We are following this resource to create our npm cache resource.
+
+License
+-------
+
+See the [LICENSE file](LICENSE) for license text and copyright information.
 
 
