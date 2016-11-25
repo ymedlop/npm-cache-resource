@@ -27,12 +27,8 @@ fi
 
 if [  "$token" != "" ]; then
 
-    echo "Set token in our .npmrc file: "$token"" >&2
-
     echo "always-auth=true" >> ~/.npmrc
     echo "_auth="$token"" >> ~/.npmrc
-
-    cat ~/.npmrc >&2
 fi
 
 if [  "$registry" != "" ]; then
