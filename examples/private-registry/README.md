@@ -67,11 +67,7 @@ In either case, a token is saved in your ~/.flyrc, which will expire after one d
 Example with private-registry-pipeline:
 
 ```
-fly -t localhost set-pipeline \
-    -c example-pipeline.yml \
-    -p private-registry-pipeline \
-    -l pipeline-variables.yml \
-    -n
+fly -t localhost set-pipeline -c example-pipeline.yml -p private-registry-pipeline -l pipeline-variables.yml -n
     
 fly -t localhost unpause-pipeline -p private-registry-pipeline
 ```

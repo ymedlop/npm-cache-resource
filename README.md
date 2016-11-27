@@ -25,8 +25,18 @@ Source Configuration
 
 * `<<:`: *Required.* The source is the same as the corresponding git resource
 
-* `registry`: *Optional.* The location our private npm registry.
-* `token`: *Optional.* Our npm token.
+### Configuration to access a NPM Registry or Private Registry by User and Password.
+
+* `registry-url`: *Optional.* Private NPM registry to log in to (Default: https://registry.npmjs.org)
+* `registry-user`: *Required.* Registry Username.
+* `registry-pass`:  *Required.* Registry User Password.
+* `registry-email`: *Required.* Registry User Email.
+* `registry-scope`: *Optional.* Registry Scope.
+
+### Configuration to access a Private Registry by Base64 Token
+
+* `registry`: *Required.* The location our private npm registry.
+* `token`: *Required.* Our npm token.
 
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
