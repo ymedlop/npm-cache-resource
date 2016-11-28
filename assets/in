@@ -18,8 +18,8 @@ REGISTRY_PASS=$(jq -r '.source["registry-pass"] // ""' < $PAYLOAD)
 REGISTRY_MAIL=$(jq -r '.source["registry-email"] // ""' < $PAYLOAD)
 REGISTRY_SCOPE=$(jq -r '.source["registry-scope"] // ""' < $PAYLOAD)
 
-REGISTRY=$(jq -r '.source.registry // ""' < $payload)
-TOKEN=$(jq -r '.source.token // ""' < $payload)
+REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
+TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR"
 
