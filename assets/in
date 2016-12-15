@@ -64,4 +64,4 @@ fi
 
 NODE_ENV=development && npm install --quiet >&2
 
-cp -R node_modules "$DEST_DIR/"
+mv node_modules "$DEST_DIR/"
