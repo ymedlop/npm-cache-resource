@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:6
+FROM mhart/alpine-node:4
 
 MAINTAINER Yeray Medina López <ymedlop@gmail.com>
 
