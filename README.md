@@ -119,7 +119,7 @@ jobs:
             args:
               - -exc
               - |
-                cp -R cache/node_modules src
+                mv cache/node_modules src
                 cd src && npm test
 ```
 
