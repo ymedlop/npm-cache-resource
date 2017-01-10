@@ -3,7 +3,7 @@ resource_types:
   # the npm-cache resource type
   - name: npm-cache
     type: docker-image
-    source: {repository: ymedlop/npm-cache-resource, tag: 0.12}
+    source: {repository: ymedlop/npm-cache-resource, tag: 0.10}
 
 resources:
 
@@ -47,7 +47,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "0.12"}
+            source: {repository: mhart/alpine-node, tag: "0.10"}
 
           inputs:
             - name: react-redux-badges-repo
@@ -79,7 +79,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "0.12"}
+            source: {repository: mhart/alpine-node, tag: "0.10"}
 
           inputs:
             - name: react-redux-badges-repo
