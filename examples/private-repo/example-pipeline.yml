@@ -1,0 +1,33 @@
+resource_types:
+
+  # the npm-cache resource type
+  - name: npm-cache
+    type: docker-image
+    source: {repository: ymedlop/npm-cache-resource, tag: latest}
+
+resources:
+
+  # a perfectly normal source repository with lashings and lashings of dependencies
+  - name: repo
+    type: git
+    source: &repo-source # apply a YAML anchor so we can refer to this in the cache resource
+      uri: https://github.com/ymedlop-sandbox/npm-cache-resource-private-package-test.git
+
+  # a resource caching the dependencies listed in the source repository
+  - name: npm-repo-cache
+    type: npm-cache # as defined above
+    source:
+      <<: *repo-source # the source is the same as the corresponding git resource ...
+      paths: # ... except that it's only interested in files listing dependencies
+        - package.json
+      private_repo_key: {{private_key-readonly}}
+
+jobs:
+
+  - name: cache
+    plan:
+
+      - get: repo
+        trigger: true
+
+      - get: npm-repo-cache
