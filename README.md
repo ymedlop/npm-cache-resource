@@ -36,6 +36,18 @@ Source Configuration
 
 * `<<:`: *Required.* The source is the same as the corresponding git resource
 
+### Configuration to access a Git Private Repo
+
+#### SSH:
+
+* `private_key`: *Required.* Private key.
+
+#### HTTP(S):
+
+* `username_key`: *Required.* Username for HTTP(S) auth. This is needed when only HTTP/HTTPS protocol for git is available (which does not support private key auth) and auth is required.
+* `password_key`: *Required.* Password for HTTP(S) auth.
+* `skip_ssl_verification`: *Optional.* Skips git ssl verification by exporting GIT_SSL_NO_VERIFY=true.
+
 ### Configuration to access a NPM Registry or Private Registry by User and Password.
 
 * `registry-url`: *Optional.* Private NPM registry to log in to (Default: https://registry.npmjs.org)
