@@ -1,4 +1,4 @@
-[![](https://images.microbadger.com/badges/version/ymedlop/npm-cache-resource:7.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:7 "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:7.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:7 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/ymedlop/npm-cache-resource:7.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:7 "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/ymedlop/npm-cache-resource:7.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:7 "Get your own license badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own license badge on microbadger.com")
 
 npm-cache-resource
 ==================
@@ -27,7 +27,7 @@ resource_types:
 
   - name: npm-cache
     type: docker-image
-    source: {repository: ymedlop/npm-cache-resource, tag: 7}
+    source: {repository: ymedlop/npm-cache-resource, tag: 0.12}
 ```
 
 
@@ -129,7 +129,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "6"}
+            source: {repository: mhart/alpine-node, tag: "0.12"}
 
           inputs:
             - name: react-redux-badges-repo
