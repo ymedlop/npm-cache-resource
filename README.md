@@ -106,7 +106,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "6"}
+            source: {repository: mhart/alpine-node, tag: "7"}
 
           inputs:
             - name: react-redux-badges-repo
