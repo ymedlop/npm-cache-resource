@@ -1,0 +1,23 @@
+{
+  "name": "npm-cache-resource-private-package-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymedlop-sandbox/npm-cache-resource.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ymedlop-sandbox/npm-cache-resource/issues"
+  },
+  "homepage": "https://github.com/ymedlop-sandbox/npm-cache-resource#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "npm-private-package": "git+ssh://git@bitbucket.org:ymedlop/npm-private-package.git#master"
+  }
+}
