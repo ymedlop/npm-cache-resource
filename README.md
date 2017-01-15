@@ -151,10 +151,7 @@ jobs:
 Getting Started
 ---------------
 
-Examples...
-
-0. [Simple Example](examples/simple/README.md)
-1. [Private Registry Example](examples/private-registry/README.md)
+You can see more examples [here](https://github.com/ymedlop-sandbox/npm-cache-resource/tree/examples).
 
 Credits:
 ========
