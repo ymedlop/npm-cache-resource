@@ -11,7 +11,8 @@ resources:
   - name: repo
     type: git
     source: &repo-source # apply a YAML anchor so we can refer to this in the cache resource
-      uri: https://github.com/ymedlop-sandbox/npm-cache-resource-private-package-test.git
+      uri: https://github.com/ymedlop-sandbox/npm-cache-resource.git
+      branch: private-npm-package-example
 
   # a resource caching the dependencies listed in the source repository
   - name: npm-repo-cache
