@@ -27,7 +27,7 @@ resource_types:
 
   - name: npm-cache
     type: docker-image
-    source: {repository: ymedlop/npm-cache-resource, tag: 7}
+    source: {repository: ymedlop/npm-cache-resource, tag: "7"}
 ```
 
 
@@ -74,18 +74,20 @@ In our demo we are using admin:123456 resulting in YWRtaW46MTIzNDU2
 resources:
 
   # a perfectly normal source repository with lashings and lashings of dependencies
-  - name: react-redux-badges-repo
+  - name: repo
     type: git
-    source: &react-redux-badges-repo-source # apply a YAML anchor so we can refer to this in the cache resource
-      uri: https://github.com/ymedlop-sandbox/react-redux-badges.git
+    source: &repo-source # apply a YAML anchor so we can refer to this in the cache resource
+      uri: https://github.com/ymedlop/npm-cache-resource.git
+      branch: npm-package-example
 
   # a resource caching the dependencies listed in the source repository
   - name: npm-repo-cache
     type: npm-cache # as defined above
     source:
-      <<: *react-redux-badges-repo-source # the source is the same as the corresponding git resource ...
+      <<: *repo-source # the source is the same as the corresponding git resource ...
       paths: # ... except that it's only interested in files listing dependencies
         - package.json
+
 ```
 
 ## Behavior
@@ -108,7 +110,7 @@ jobs:
   - name: cache
     plan:
 
-      - get: react-redux-badges-repo
+      - get: repo
         trigger: true
 
       - get: npm-repo-cache
@@ -116,7 +118,7 @@ jobs:
   - name: test
     plan:
 
-      - get: react-redux-badges-repo
+      - get: repo
         trigger: true
         passed: [cache]
 
@@ -129,10 +131,10 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "7"}
+            source: {repository: mhart/alpine-node, tag: "6"}
 
           inputs:
-            - name: react-redux-badges-repo
+            - name: repo
               path: /src
             - name: npm-repo-cache
               path: /cache
@@ -144,6 +146,38 @@ jobs:
               - |
                 mv cache/node_modules src
                 cd src && npm test
+
+  - name: build
+    plan:
+
+      - get: repo
+        trigger: true
+        passed: [cache]
+
+      - get: npm-repo-cache
+        passed: [cache]
+
+      - task: run build
+        config:
+
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: mhart/alpine-node, tag: "6"}
+
+          inputs:
+            - name: repo
+              path: /src
+            - name: npm-repo-cache
+              path: /cache
+
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                mv cache/node_modules src
+                cd src && npm run build
 ```
 
 ### `out`: Nothing to do here....
