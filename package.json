@@ -1,10 +1,11 @@
 {
-  "name": "npm-cache-resource-private-package-test",
+  "name": "npm-cache-resource-package-test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "browserify index.js > index.min.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/ymedlop-sandbox/npm-cache-resource#readme",
   "dependencies": {
-    "lodash": "^4.17.4",
-    "npm-private-package": "git+ssh://git@bitbucket.org:ymedlop/npm-private-package.git#master"
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "browserify": "^14.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
