@@ -7,12 +7,12 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="e.g. npm-cache-resource" \
+      org.label-schema.name="npm-cache-resource" \
       org.label-schema.description="a Concourse resource for caching dependencies downloaded by NPM - built on mhart/alpine-node." \
-      org.label-schema.url="e.g. https://hub.docker.com/r/ymedlop/npm-cache-resource/" \
+      org.label-schema.url="https://ymedlop.github.io/npm-cache-resource" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="e.g. https://github.com/ymedlop-sandbox/npm-cache-resource.git" \
-      org.label-schema.vendor="e.g. ymedlop" \
+      org.label-schema.vcs-url="https://github.com/ymedlop/npm-cache-resource" \
+      org.label-schema.vendor="ymedlop" \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0" \
       org.label-schema.license="MIT"
