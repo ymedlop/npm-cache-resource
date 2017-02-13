@@ -27,7 +27,9 @@ REGISTRY_SCOPE=$(jq -r '.source["registry-scope"] // ""' < $PAYLOAD)
 REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
-cd "$GIT_DEST_DIR"
+PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
+
+cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
 if [  "$http_proxy" != "" ]; then
 
