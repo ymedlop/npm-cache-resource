@@ -61,6 +61,9 @@ Source Configuration
 * `registry`: *Required.* The location our private npm registry.
 * `token`: *Required.* Our npm token.
 
+### Configuration for projects living in subdirectories
+* `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
+
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
 Another example for a valid setup is jane:testpassword123 resulting in amFuZTp0ZXN0cGFzc3dvcmQxMjM=.
@@ -131,7 +134,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "6"}
+            source: {repository: mhart/alpine-node, tag: "0.10"}
 
           inputs:
             - name: repo
@@ -163,7 +166,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "6"}
+            source: {repository: mhart/alpine-node, tag: "0.10"}
 
           inputs:
             - name: repo
