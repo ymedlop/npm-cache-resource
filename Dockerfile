@@ -34,6 +34,15 @@ RUN apk add --update \
     python-dev \
   && rm -rf /var/cache/apk/*
 
+# https://github.com/yarnpkg/yarn/issues/1326
+ENV YARN_VERSION 0.20.0
+ADD https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v${YARN_VERSION}.tar.gz /opt/yarn.tar.gz
+RUN yarnDirectory=/opt/yarn && \
+  mkdir -p "$yarnDirectory" && \
+  tar -xzf /opt/yarn.tar.gz -C "$yarnDirectory" && \
+  ln -s "$yarnDirectory/dist/bin/yarn" /usr/local/bin/ && \
+  rm /opt/yarn.tar.gz
+
 # according to Brian Clements, can't `git pull` unless we set these
 RUN git config --global user.email "git@localhost" && \
     git config --global user.name "git"
