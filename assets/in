@@ -28,6 +28,7 @@ REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
+YARN_SUPPORT=$(jq -r '.source["yarn-support"] // ""' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
@@ -70,6 +71,10 @@ else
     fi
 fi
 
-NODE_ENV=development && npm install --quiet >&2
+if [ "YARN_SUPPORT" = "true" ]; then
+    NODE_ENV=development && yarn install >&2
+else
+    NODE_ENV=development && npm install --quiet >&2
+fi
 
 mv node_modules "$DEST_DIR/"
