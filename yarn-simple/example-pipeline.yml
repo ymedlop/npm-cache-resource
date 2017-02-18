@@ -63,6 +63,7 @@ jobs:
               - -exc
               - |
                 mv cache/node_modules src
+                npm install -g yarn
                 cd src && yarn test
 
   - name: build
@@ -95,4 +96,5 @@ jobs:
               - -exc
               - |
                 mv cache/node_modules src
+                npm install -g yarn
                 cd src && yarn build
