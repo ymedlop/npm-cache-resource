@@ -28,7 +28,7 @@ REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
-YARN_SUPPORT=$(jq -r '.source["yarn-support"] // ""' < $PAYLOAD)
+YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
@@ -58,20 +58,20 @@ if [ "$REGISTRY_USER" != "" ] && [ "$REGISTRY_PASS" != "" ] && [ "$REGISTRY_MAIL
 
 else
 
-    if [  "$TOKEN" != "" ]; then
+    if [ "$TOKEN" != "" ]; then
 
         echo "always-auth=true" >> ~/.npmrc
         echo "_auth="$TOKEN"" >> ~/.npmrc
     fi
 
-    if [  "$REGISTRY" != "" ]; then
+    if [ "$REGISTRY" != "" ]; then
 
         echo "Set Private Registry: "$REGISTRY"" >&2
         npm config set registry $REGISTRY
     fi
 fi
 
-if [ "YARN_SUPPORT" = "true" ]; then
+if [ "$YARN_SUPPORT" = "true" ]; then
     NODE_ENV=development && yarn install >&2
 else
     NODE_ENV=development && npm install --quiet >&2
