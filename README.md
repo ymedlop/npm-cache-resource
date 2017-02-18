@@ -196,6 +196,7 @@ You can see more examples [here](https://github.com/ymedlop-sandbox/npm-cache-re
 Credits:
 ========
 
+* [concourse git resource](https://github.com/concourse/git-resource)
 * [projectfalcon/gradle-cache-resource](https://github.com/projectfalcon/gradle-cache-resource) We are following this resource to create our npm cache resource.
 
 License
