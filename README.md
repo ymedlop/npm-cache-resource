@@ -64,6 +64,9 @@ Source Configuration
 ### Configuration for projects living in subdirectories
 * `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
 
+### Configuration use yarn cli
+* `yarn-support`: *Optional* Allow to use yarn to install the npm modules into our resource. (Default: false)
+
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
 Another example for a valid setup is jane:testpassword123 resulting in amFuZTp0ZXN0cGFzc3dvcmQxMjM=.
@@ -193,6 +196,7 @@ You can see more examples [here](https://github.com/ymedlop-sandbox/npm-cache-re
 Credits:
 ========
 
+* [concourse git resource](https://github.com/concourse/git-resource)
 * [projectfalcon/gradle-cache-resource](https://github.com/projectfalcon/gradle-cache-resource) We are following this resource to create our npm cache resource.
 
 License
