@@ -1,30 +1,43 @@
-concourse-db:
-  image: postgres:9.5
-  environment:
-    POSTGRES_DB: concourse
-    POSTGRES_USER: concourse
-    POSTGRES_PASSWORD: changeme
-    PGDATA: /database
+version: '3'
 
-concourse-web:
-  image: concourse/concourse
-  links: [concourse-db]
-  command: web
-  ports: ["8080:8080"]
-  volumes: ["./keys/web:/concourse-keys"]
-  environment:
-    CONCOURSE_BASIC_AUTH_USERNAME: concourse
-    CONCOURSE_BASIC_AUTH_PASSWORD: changeme
-    CONCOURSE_EXTERNAL_URL: "${CONCOURSE_EXTERNAL_URL}"
-    CONCOURSE_POSTGRES_DATA_SOURCE: |-
-      postgres://concourse:changeme@concourse-db:5432/concourse?sslmode=disable
+services:
+  concourse-db:
+    image: postgres
+    environment:
+    - POSTGRES_DB=concourse
+    - POSTGRES_PASSWORD=concourse_pass
+    - POSTGRES_USER=concourse_user
+    - PGDATA=/database
 
-concourse-worker:
+  concourse-web:
+    image: concourse/concourse
+    command: web
+    links: [concourse-db]
+    depends_on: [concourse-db]
+    ports: ["8080:8080"]
+    volumes: ["./keys/web:/concourse-keys"]
+    environment:
+    - CONCOURSE_POSTGRES_HOST=concourse-db
+    - CONCOURSE_POSTGRES_USER=concourse_user
+    - CONCOURSE_POSTGRES_PASSWORD=concourse_pass
+    - CONCOURSE_POSTGRES_DATABASE=concourse
+    - CONCOURSE_EXTERNAL_URL=${CONCOURSE_EXTERNAL_URL}
+    - CONCOURSE_NO_REALLY_I_DONT_WANT_ANY_AUTH=true
 
-  image: concourse/concourse
-  privileged: true
-  links: [concourse-web]
-  command: worker
-  volumes: ["./keys/worker:/concourse-keys"]
-  environment:
-    CONCOURSE_TSA_HOST: concourse-web
+  concourse-worker:
+    image: concourse/concourse
+    command: worker
+    privileged: true
+    links: [concourse-web]
+    depends_on: [concourse-web]
+    volumes: ["./keys/worker:/concourse-keys"]
+    environment:
+    - CONCOURSE_TSA_HOST=concourse-web
+    - CONCOURSE_GARDEN_ADDRESS=concourse-worker
+    - CONCOURSE_BAGGAGECLAIM_ADDRESS=concourse-worker
+    - CONCOURSE_GARDEN_FORWARD_ADDRESS=concourse-worker
+    - CONCOURSE_BAGGAGECLAIM_FORWARD_ADDRESS=concourse-worker
+    - CONCOURSE_GARDEN_DNS_SERVER=8.8.8.8
+    dns:
+    - 8.8.8.8
+    - 8.8.4.4
