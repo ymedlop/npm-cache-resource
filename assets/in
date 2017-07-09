@@ -72,16 +72,16 @@ else
     fi
 fi
 
-if [ "$YARN_SUPPORT" = "true" ]; then
+if [ "$YARN_SUPPORT" != "false" ]; then
     echo "Yarn support: "$YARN_SUPPORT"" >&2
-    NODE_ENV=development && yarn install >&2
+    NODE_ENV=development && yarn install -s >&2
 else
     NODE_ENV=development && npm install --quiet >&2
 fi
 
-if [ "BOWER_SUPPORT" = "true" ]; then
+if [ "BOWER_SUPPORT" != "false" ]; then
     echo "Bower support: "BOWER_SUPPORT"" >&2
-    node_modules/.bin/bower install >&2
+    node_modules/.bin/bower install -q >&2
     ls
     mv bower_components "$DEST_DIR/"
 fi
