@@ -73,13 +73,13 @@ else
 fi
 
 if [ "$YARN_SUPPORT" != "false" ]; then
-    NODE_ENV=development && yarn install -s >&2
+    NODE_ENV=development && yarn install >&2
 else
     NODE_ENV=development && npm install --quiet >&2
 fi
 
 if [ "BOWER_SUPPORT" != "false" ]; then
-    node_modules/.bin/bower install --allow-root -q >&2
+    node_modules/.bin/bower install --allow-root >&2
     mv bower_components "$DEST_DIR/"
 fi
 
