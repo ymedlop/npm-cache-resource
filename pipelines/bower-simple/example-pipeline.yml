@@ -63,6 +63,7 @@ jobs:
             args:
               - -exc
               - |
+                ls cache
                 mv cache/bower_components src
                 mv cache/node_modules src
                 ls src
@@ -97,7 +98,8 @@ jobs:
             args:
               - -exc
               - |
-                mv cache/node_modules src
+                ls cache
+                mv cache/bower_components src
                 mv cache/node_modules src
                 ls src
                 cd src && npm run build

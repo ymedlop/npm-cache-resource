@@ -1,3 +1,11 @@
+sinopia:
+  build: ../../../pipelines/private-registry/sinopia/.
+  ports:
+   - "4873:4873"
+  volumes:
+   - ../../../pipelines/private-registry/sinopia/storage:/opt/sinopia/storage
+   - ../../../pipelines/private-registry/sinopia/config:/opt/sinopia/config
+
 concourse-db:
   image: postgres:9.5
   environment:
@@ -11,7 +19,7 @@ concourse-web:
   links: [concourse-db]
   command: web
   ports: ["8080:8080"]
-  volumes: ["./keys/web:/concourse-keys"]
+  volumes: ["../../../keys/web:/concourse-keys"]
   environment:
     CONCOURSE_BASIC_AUTH_USERNAME: concourse
     CONCOURSE_BASIC_AUTH_PASSWORD: changeme
@@ -25,6 +33,6 @@ concourse-worker:
   privileged: true
   links: [concourse-web]
   command: worker
-  volumes: ["./keys/worker:/concourse-keys"]
+  volumes: ["../../../keys/web:/concourse-keys"]
   environment:
     CONCOURSE_TSA_HOST: concourse-web

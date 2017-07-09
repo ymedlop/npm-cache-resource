@@ -15,7 +15,7 @@ services:
     links: [concourse-db]
     depends_on: [concourse-db]
     ports: ["8080:8080"]
-    volumes: ["./keys/web:/concourse-keys"]
+    volumes: ["../../../keys/web:/concourse-keys"]
     environment:
     - CONCOURSE_POSTGRES_HOST=concourse-db
     - CONCOURSE_POSTGRES_USER=concourse_user
@@ -30,7 +30,7 @@ services:
     privileged: true
     links: [concourse-web]
     depends_on: [concourse-web]
-    volumes: ["./keys/worker:/concourse-keys"]
+    volumes: ["../../../keys/worker:/concourse-keys"]
     environment:
     - CONCOURSE_TSA_HOST=concourse-web
     - CONCOURSE_GARDEN_ADDRESS=concourse-worker
