@@ -79,7 +79,7 @@ else
 fi
 
 if [ "BOWER_SUPPORT" != "false" ]; then
-    node_modules/.bin/bower install --allow-root option -q >&2
+    node_modules/.bin/bower install --allow-root -q >&2
     mv bower_components "$DEST_DIR/"
 fi
 
