@@ -1,0 +1,20 @@
+{
+  "name": "npm-cache-resource-package-test",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Yeray Medina López <ymedlop@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ymedlop/npm-cache-resource",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
