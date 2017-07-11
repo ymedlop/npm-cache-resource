@@ -1,4 +1,6 @@
 [![](https://images.microbadger.com/badges/version/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/ymedlop/npm-cache-resource:0.12.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:0.12 "Get your own license badge on microbadger.com")
+[![](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)
+
 
 npm-cache-resource
 ==================
@@ -66,6 +68,9 @@ Source Configuration
 
 ### Configuration use yarn cli
 * `yarn-support`: *Optional* Allow to use yarn to install the npm modules into our resource. (Default: false)
+
+### Configuration use bower cli
+* `bower-support`: *Optional* Allow to use bower to install packages into our resource (Bower dependency has to be in our package.json). (Default: false)
 
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
