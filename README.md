@@ -68,6 +68,9 @@ Source Configuration
 ### Configuration use yarn cli
 * `yarn-support`: *Optional* Allow to use yarn to install the npm modules into our resource. (Default: false)
 
+### Configuration use bower cli
+* `bower-support`: *Optional* Allow to use bower to install packages into our resource (Bower dependency has to be in our package.json). (Default: false)
+
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
 Another example for a valid setup is jane:testpassword123 resulting in amFuZTp0ZXN0cGFzc3dvcmQxMjM=.
