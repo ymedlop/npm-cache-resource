@@ -78,7 +78,7 @@ else
     NODE_ENV=development && npm install --quiet >&2
 fi
 
-if [ "BOWER_SUPPORT" != "false" ]; then
+if [ "$BOWER_SUPPORT" != "false" ]; then
     node_modules/.bin/bower install --allow-root >&2
     mv bower_components "$DEST_DIR/"
 fi
