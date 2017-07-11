@@ -28,6 +28,7 @@ REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
+BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
@@ -71,10 +72,15 @@ else
     fi
 fi
 
-if [ "$YARN_SUPPORT" = "true" ]; then
+if [ "$YARN_SUPPORT" != "false" ]; then
     NODE_ENV=development && yarn install >&2
 else
     NODE_ENV=development && npm install --quiet >&2
+fi
+
+if [ "$BOWER_SUPPORT" != "false" ]; then
+    node_modules/.bin/bower install --allow-root >&2
+    mv bower_components "$DEST_DIR/"
 fi
 
 mv node_modules "$DEST_DIR/"
