@@ -1,0 +1,29 @@
+{
+  "name": "npm-cache-resource-package-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify index.js > index.min.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymedlop-sandbox/npm-cache-resource.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ymedlop-sandbox/npm-cache-resource/issues"
+  },
+  "homepage": "https://github.com/ymedlop-sandbox/npm-cache-resource#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "browserify": "^14.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
