@@ -33,40 +33,26 @@ YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
-if [  "$http_proxy" != "" ]; then
-
+if [ -n "$http_proxy" ]; then
     echo "Set npm httproxy: "$http_proxy"" >&2
-
     npm config set proxy $http_proxy
     npm config set https-proxy $https_proxy
 fi
 
-if [ "$REGISTRY_USER" != "" ] && [ "$REGISTRY_PASS" != "" ] && [ "$REGISTRY_MAIL" != "" ]; then
-
-    if [ -z "$REGISTRY_URL" ]; then
-        REGISTRY_URL_OPTION=""
+if [ -n "$REGISTRY_USER" ] && [ -n "$REGISTRY_PASS" ] && [ -n "$REGISTRY_MAIL" ]; then
+    if [ -n "$REGISTRY_URL" ] && [ -z¡n "$REGISTRY_SCOPE" ]; then
+        npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL -r $REGISTRY_URL -s $REGISTRY_SCOPE
+    elif [ -n "$REGISTRY_URL" ]; then
+        npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL -r $REGISTRY_URL
     else
-        REGISTRY_URL_OPTION="-r $REGISTRY_URL"
+        npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL
     fi
-
-    if [ -z "$REGISTRY_SCOPE" ]; then
-        REGISTRY_SCOPE_OPTION=""
-    else
-        REGISTRY_SCOPE_OPTION="-s $REGISTRY_SCOPE"
-    fi
-
-    npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL $REGISTRY_URL_OPTION $REGISTRY_SCOPE_OPTION --quotes
-
 else
-
-    if [ "$TOKEN" != "" ]; then
-
+    if [ -n "$TOKEN" ]; then
         echo "always-auth=true" >> ~/.npmrc
         echo "_auth="$TOKEN"" >> ~/.npmrc
     fi
-
-    if [ "$REGISTRY" != "" ]; then
-
+    if [ -n "$REGISTRY" ]; then
         echo "Set Private Registry: "$REGISTRY"" >&2
         npm config set registry $REGISTRY
     fi
