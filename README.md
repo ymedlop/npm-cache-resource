@@ -1,5 +1,4 @@
 [![](https://images.microbadger.com/badges/version/ymedlop/npm-cache-resource:4.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:4 "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:4.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:4 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/ymedlop/npm-cache-resource:4.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:4 "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/ymedlop/npm-cache-resource:4.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:4 "Get your own license badge on microbadger.com")
-[![](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)
 
 npm-cache-resource
 ==================
@@ -13,7 +12,7 @@ Versions
 --------
 
 * [latest](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/master/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:latest ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own image badge on microbadger.com")
-* [8](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v7/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:8 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:8.svg)]
+* [8](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v7/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:8 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:8.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:8 "Get your own image badge on microbadger.com")
 * [7](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v7/Dockerfile) ( npm 4.0.5 - alpine-node:7 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:7.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:7 "Get your own image badge on microbadger.com")
 * [6](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v6/Dockerfile) ( npm 3.10.10 - alpine-node:6 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:6.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:6 "Get your own image badge on microbadger.com")
 * [4](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v4/Dockerfile) ( npm 2.15.11 - alpine-node:4 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:4.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:4 "Get your own image badge on microbadger.com")
