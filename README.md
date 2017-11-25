@@ -1,7 +1,6 @@
 [![](https://images.microbadger.com/badges/version/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own license badge on microbadger.com")
 [![](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)
-[![Anchore Image Overview](https://anchore.io/service/badges/image/ff3248a908b44da88fb3f1db2e1927466cba0975ce68e4ecf4ce13aee153483a)](https://anchore.io/image/dockerhub/ff3248a908b44da88fb3f1db2e1927466cba0975ce68e4ecf4ce13aee153483a?repo=ymedlop%2Fnpm-cache-resource&tag=latest)
-[![Anchore Image Policy](https://anchore.io/service/badges/policy/ff3248a908b44da88fb3f1db2e1927466cba0975ce68e4ecf4ce13aee153483a?registry=dockerhub&repository=ymedlop/npm-cache-resource&tag=latest)](https://anchore.io)		
+[![Anchore Image Overview](https://anchore.io/service/badges/image/ff3248a908b44da88fb3f1db2e1927466cba0975ce68e4ecf4ce13aee153483a)](https://anchore.io/image/dockerhub/ff3248a908b44da88fb3f1db2e1927466cba0975ce68e4ecf4ce13aee153483a?repo=ymedlop%2Fnpm-cache-resource&tag=latest)		
   
 npm-cache-resource
 ==================
