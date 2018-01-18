@@ -1,4 +1,4 @@
-project-path Example
+Simple Example
 ==============
 
 a simple pipeline example
@@ -21,14 +21,14 @@ Example with private-registry-pipeline:
 ```
 fly -t localhost set-pipeline \
     -c example-pipeline.yml \
-    -p project-path-pipeline \
+    -p simple-pipeline \
     -n
     
-fly -t localhost unpause-pipeline -p project-path-pipeline
+fly -t localhost unpause-pipeline -p simple-pipeline
 ```
 
 If you want destroy it:
 
 ```
-fly -t localhost destroy-pipeline -p  project-path-pipeline
+fly -t localhost destroy-pipeline -p simple-pipeline
 ```

@@ -3,7 +3,7 @@ resource_types:
   # the npm-cache resource type
   - name: npm-cache
     type: docker-image
-    source: {repository: ymedlop/npm-cache-resource, tag: "6"}
+    source: {repository: ymedlop/npm-cache-resource, tag: "latest"}
 
 resources:
 
@@ -12,7 +12,7 @@ resources:
     type: git
     source: &repo-source # apply a YAML anchor so we can refer to this in the cache resource
       uri: https://github.com/ymedlop/npm-cache-resource.git
-      branch: npm-package-example
+      branch: npm-package-project-path-example
 
   # a resource caching the dependencies listed in the source repository
   - name: npm-repo-cache
@@ -20,8 +20,8 @@ resources:
     source:
       <<: *repo-source # the source is the same as the corresponding git resource ...
       paths: # ... except that it's only interested in files listing dependencies
-        - src/project/package.json
-      project-path: src/project
+        - app/package.json # only trigger when package.json is changed
+      project-path: app # path where it is our package.json
 
 jobs:
 
@@ -62,8 +62,8 @@ jobs:
             args:
               - -exc
               - |
-                mv cache/node_modules src
-                cd src && npm test
+                mv cache/node_modules src/app
+                cd src/app && npm test
 
   - name: build
     plan:
@@ -94,5 +94,5 @@ jobs:
             args:
               - -exc
               - |
-                mv cache/node_modules src
-                cd src && npm run build
+                mv cache/node_modules src/app
+                cd src/app && npm run build

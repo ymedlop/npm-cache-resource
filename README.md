@@ -58,6 +58,8 @@ Pipelines examples...
 2. [Yarn Simple Example](pipelines/yarn-simple/README.md)
 3. [Private Registry Example](pipelines/private-registry/README.md)
 4. [Private Repo Example](pipelines/private-repo/README.md)
+5. [Project Path Example](pipelines/project-path/README.md)
+6. [Public Registry Example](pipelines/public-registry/README.md)
 
 License
 -------

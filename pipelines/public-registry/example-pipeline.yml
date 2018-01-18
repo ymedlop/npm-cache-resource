@@ -22,11 +22,10 @@ resources:
       <<: *repo-source # the source is the same as the corresponding git resource ...
       paths: # ... except that it's only interested in files listing dependencies
         - package.json
-      registry-url: {{registry-url}}
-      registry-user: {{registry-user}}
-      registry-pass: {{registry-pass}}
-      registry-email: {{registry-email}}
-      
+      registry-user: 1234
+      registry-pass: 1234
+      registry-email: 1234@todo.com
+
 jobs:
 
   - name: cache
