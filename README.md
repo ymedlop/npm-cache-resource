@@ -64,6 +64,9 @@ Source Configuration
 ### Configuration for projects living in subdirectories
 * `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
 
+### Configuration use npm ci command
+* `npm-ci-support`: *Optional* Allow to use npm ci instead of npm install to install the npm modules into our resource. (Default: false)
+
 ### Configuration use yarn cli
 * `yarn-support`: *Optional* Allow to use yarn to install the npm modules into our resource. (Default: false)
 

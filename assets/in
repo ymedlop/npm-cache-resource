@@ -28,8 +28,9 @@ REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
-BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
+NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
+BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
@@ -60,6 +61,8 @@ fi
 
 if [ "$YARN_SUPPORT" != "false" ]; then
     NODE_ENV=development && yarn install >&2
+else if [ "$NPM_CI_SUPPORT" != "false" ]; then
+    NODE_ENV=development && npm ci --quiet >&2
 else
     NODE_ENV=development && npm install --quiet >&2
 fi
