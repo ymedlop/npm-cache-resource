@@ -48,7 +48,7 @@ if [ -n "$REGISTRY_USER" ] && [ -n "$REGISTRY_PASS" ] && [ -n "$REGISTRY_MAIL" ]
     else
         npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL
     fi
-else
+elif
     if [ -n "$TOKEN" ]; then
         echo "always-auth=true" >> ~/.npmrc
         echo "_auth="$TOKEN"" >> ~/.npmrc
