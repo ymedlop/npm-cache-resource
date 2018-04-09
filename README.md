@@ -9,13 +9,6 @@ a Concourse resource for caching dependencies downloaded by NPM - built on [mhar
 
 [![EXAMPLE PIPELINE](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/gh-pages/images/example-pipeline.png)](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/gh-pages/images/example-pipeline.png)
 
-npm-cache-resource
-==================
-
-a Concourse resource for caching dependencies downloaded by NPM - built on [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node).
-
-[![EXAMPLE PIPELINE](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/gh-pages/images/example-pipeline.png)](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/gh-pages/images/example-pipeline.png)
-
 Versions
 --------
 
