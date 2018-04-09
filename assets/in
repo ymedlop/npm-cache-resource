@@ -61,7 +61,7 @@ fi
 
 if [ "$YARN_SUPPORT" != "false" ]; then
     NODE_ENV=development && yarn install >&2
-else if [ "$NPM_CI_SUPPORT" != "false" ]; then
+elif [ "$NPM_CI_SUPPORT" != "false" ]; then
     NODE_ENV=development && npm ci --quiet >&2
 else
     NODE_ENV=development && npm install --quiet >&2
