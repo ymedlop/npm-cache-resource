@@ -32,6 +32,11 @@ RUN apk add --update \
     build-base \
     python \
     python-dev \
+    # Fix problem with some dependencies: https://github.com/ymedlop/npm-cache-resource/issues/39
+    libtool \
+    automake \
+    autoconf \
+    nasm \
   && rm -rf /var/cache/apk/*
 
 # https://github.com/yarnpkg/yarn/issues/1326
