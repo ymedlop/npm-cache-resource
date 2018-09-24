@@ -31,6 +31,7 @@ PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
 NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
 BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
+NODE_ENV=$(jq -r '.source["node-env"] // "development"' < $PAYLOAD)
 
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
@@ -60,11 +61,11 @@ else
 fi
 
 if [ "$YARN_SUPPORT" != "false" ]; then
-    NODE_ENV=development && yarn install >&2
+    NODE_ENV=$NODE_ENV && yarn install >&2
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
-    NODE_ENV=development && npm ci --quiet >&2
+    NODE_ENV=$NODE_ENV && npm ci --quiet >&2
 else
-    NODE_ENV=development && npm install --quiet >&2
+    NODE_ENV=$NODE_ENV && npm install --quiet >&2
 fi
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
