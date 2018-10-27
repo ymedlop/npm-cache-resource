@@ -4,20 +4,28 @@
 set -e
 set -o pipefail
 
+# functions from the git resource for configuring git and ssh
 source /opt/resource/git/common.sh
 
 DEST_DIR="$1"
 
 GIT_DEST_DIR="$(mktemp -d -t git-resource-destination.XXXXXX)"
 
+# pull the git repo from the config passed in stdin
+# also handles emitting the correct output for concourse
 /opt/resource/git/in "$GIT_DEST_DIR"
 
+# the config passed via stdin is saved to /tmp/git-resource-request.*
+# by the /opt/resource/git/in script. load it back into PAYLOAD 
+# to parse it further
 PAYLOAD=$(echo /tmp/git-resource-request.*)
 
+# use git-resource's helper functions to configure git credentials
 load_pubkey $PAYLOAD
 configure_git_ssl_verification $PAYLOAD
 configure_credentials $PAYLOAD
 
+# parse the npm registry information from the payload
 REGISTRY_URL=$(jq -r '.source["registry-url"] // ""' < $PAYLOAD)
 REGISTRY_USER=$(jq -r '.source["registry-user"] // ""' < $PAYLOAD)
 REGISTRY_PASS=$(jq -r '.source["registry-pass"] // ""' < $PAYLOAD)
@@ -27,19 +35,23 @@ REGISTRY_SCOPE=$(jq -r '.source["registry-scope"] // ""' < $PAYLOAD)
 REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
+# parse additional config
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
 NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
 BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
 
+# go into the cloned sorce code
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
+# configure proxy
 if [ -n "$http_proxy" ]; then
     echo "Set npm httproxy: "$http_proxy"" >&2
     npm config set proxy $http_proxy
     npm config set https-proxy $https_proxy
 fi
 
+# login to registry
 if [ -n "$REGISTRY_USER" ] && [ -n "$REGISTRY_PASS" ] && [ -n "$REGISTRY_MAIL" ]; then
     if [ -n "$REGISTRY_URL" ] && [ -z¡n "$REGISTRY_SCOPE" ]; then
         npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL -r $REGISTRY_URL -s $REGISTRY_SCOPE
@@ -59,6 +71,7 @@ else
     fi
 fi
 
+# use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
     NODE_ENV=development && yarn install >&2
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
@@ -72,4 +85,6 @@ if [ "$BOWER_SUPPORT" != "false" ]; then
     mv bower_components "$DEST_DIR/"
 fi
 
+# only export the node_modules folder
+# the fetched version is already emitted by the git in script called at the beginning
 mv node_modules "$DEST_DIR/"

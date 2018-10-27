@@ -1,2 +1,8 @@
 #! /bin/bash -eu
 set -o pipefail
+
+# do nothing. The resource does not push any data
+# but makes use of concourses internal caching to
+# make the node_modules available over multiple
+# jobs in a pipeline. If the cache is lost it just
+# builds node_modules again in the `in` script
