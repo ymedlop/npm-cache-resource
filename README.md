@@ -63,6 +63,9 @@ Source Configuration
 * `registry`: *Required.* The location our private npm registry.
 * `token`: *Required.* Our npm token.
 
+# Node.js Environment variables
+* `node-env`: Set NODE_ENV. (Default: development)
+
 ### Configuration for projects living in subdirectories
 * `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
 
