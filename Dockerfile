@@ -38,6 +38,7 @@ RUN apk add --update \
     autoconf \
     nasm \
   && rm -rf /var/cache/apk/*
+  && update-ca-certificates
 
 # https://github.com/yarnpkg/yarn/issues/1326
 ENV YARN_VERSION 0.20.0
