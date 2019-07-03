@@ -37,7 +37,7 @@ RUN apk add --update \
     automake \
     autoconf \
     nasm \
-  && rm -rf /var/cache/apk/*
+  && rm -rf /var/cache/apk/* \
   && update-ca-certificates
 
 # https://github.com/yarnpkg/yarn/issues/1326
