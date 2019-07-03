@@ -40,7 +40,7 @@ if [ -n "$http_proxy" ]; then
 fi
 
 if [ -n "$REGISTRY_USER" ] && [ -n "$REGISTRY_PASS" ] && [ -n "$REGISTRY_MAIL" ]; then
-    if [ -n "$REGISTRY_URL" ] && [ -z¡n "$REGISTRY_SCOPE" ]; then
+    if [ -n "$REGISTRY_URL" ] && [ -n "$REGISTRY_SCOPE" ]; then
         npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL -r $REGISTRY_URL -s $REGISTRY_SCOPE
     elif [ -n "$REGISTRY_URL" ]; then
         npm-cli-login -u $REGISTRY_USER -p $REGISTRY_PASS -e $REGISTRY_MAIL -r $REGISTRY_URL
