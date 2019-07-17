@@ -18,7 +18,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.license="MIT"
 
 RUN apk add --update \
-    openssl \
+    libressl \
     sed \
     ca-certificates \
     bash \
