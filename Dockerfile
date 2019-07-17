@@ -18,6 +18,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.license="MIT"
 
 RUN apk add --update \
+    # Fix ssl_client: github.com: TLS connect failed: https://github.com/ymedlop/npm-cache-resource/issues/52
     libressl \
     sed \
     ca-certificates \
