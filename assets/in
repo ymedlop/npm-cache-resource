@@ -25,22 +25,36 @@ load_pubkey $PAYLOAD
 configure_git_ssl_verification $PAYLOAD
 configure_credentials $PAYLOAD
 
-# parse the npm registry information from the payload
+# Configuration to access a NPM Registry or Private Registry by User and Password.
 REGISTRY_URL=$(jq -r '.source["registry-url"] // ""' < $PAYLOAD)
 REGISTRY_USER=$(jq -r '.source["registry-user"] // ""' < $PAYLOAD)
 REGISTRY_PASS=$(jq -r '.source["registry-pass"] // ""' < $PAYLOAD)
 REGISTRY_MAIL=$(jq -r '.source["registry-email"] // ""' < $PAYLOAD)
 REGISTRY_SCOPE=$(jq -r '.source["registry-scope"] // ""' < $PAYLOAD)
 
+# Configuration to access a Private Registry by Base64 Token
 REGISTRY=$(jq -r '.source.registry // ""' < $PAYLOAD)
 TOKEN=$(jq -r '.source.token // ""' < $PAYLOAD)
 
-# parse additional config
-PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
-NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
-YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
-BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
+# Node.js Environment variables
 NODE_ENV=$(jq -r '.source["node-env"] // "development"' < $PAYLOAD)
+
+# Configuration for projects living in subdirectories
+PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
+
+# Configuration use for npm and npm ci command
+NPM_ARGS=$(jq -r '.source["npm-ci-args"] // "--quiet >&2"' < $PAYLOAD)
+
+# Configuration use npm ci command
+NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
+
+# Configuration use yarn cli
+YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
+YARN_ARGS=$(jq -r '.source["yarn-args"] // ">&2"' < $PAYLOAD)
+
+# Configuration use bower cli
+BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
+BOWER_ARGS=$(jq -r '.source["bower-args"] // "--allow-root >&2"' < $PAYLOAD)
 
 # go into the cloned sorce code
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
@@ -74,15 +88,15 @@ fi
 
 # use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
-    NODE_ENV=$NODE_ENV && yarn install >&2
+    NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
-    NODE_ENV=$NODE_ENV && npm ci --quiet >&2
+    NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS
 else
-    NODE_ENV=$NODE_ENV && npm install --quiet >&2
+    NODE_ENV=$NODE_ENV && npm i $NPM_ARGS
 fi
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
-    node_modules/.bin/bower install --allow-root >&2
+    node_modules/.bin/bower install $BOWER_ARGS
     mv bower_components "$DEST_DIR/"
 fi
 

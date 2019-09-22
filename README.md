@@ -4,7 +4,7 @@
 npm-cache-resource
 ==================
 
-a Concourse resource for caching dependencies downloaded by NPM - built on [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node).
+a Concourse resource for caching dependencies downloaded by NPM - built on [mhart/alpine-node](https://hub.docker.com/r/mhart/alpine-node) and [git-resource](https://github.com/concourse/git-resource).
 
 [![EXAMPLE PIPELINE](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/gh-pages/images/example-pipeline.png)](https://raw.githubusercontent.com/ymedlop-sandbox/npm-cache-resource/gh-pages/images/example-pipeline.png)
 
@@ -12,6 +12,7 @@ Versions
 --------
 
 * [latest](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/master/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:latest ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own image badge on microbadger.com")
+* [10](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v10/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:10 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:10.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:10 "Get your own image badge on microbadger.com")
 * [9](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v9/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:9 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:9.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:9 "Get your own image badge on microbadger.com")
 * [8](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v8/Dockerfile) ( npm 5.1.0 - yarn latest - alpine-node:8 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:8.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:8 "Get your own image badge on microbadger.com")
 * [7](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v7/Dockerfile) ( npm 4.0.5 - alpine-node:7 ) [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource:7.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource:7 "Get your own image badge on microbadger.com")
@@ -68,14 +69,19 @@ Source Configuration
 ### Configuration for projects living in subdirectories
 * `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
 
+### Configuration use for npm
+* `npm-args`: *Optional* Allow to add extra args to npm i / npm ci command. (Default: "--quiet >&2")
+
 ### Configuration use npm ci command
 * `npm-ci-support`: *Optional* Allow to use npm ci instead of npm install to install the npm modules into our resource. (Default: false)
 
 ### Configuration use yarn cli
 * `yarn-support`: *Optional* Allow to use yarn to install the npm modules into our resource. (Default: false)
+* `yarn-args`: *Optional* Allow to add extra args to yarn install command. (Default: ">&2")
 
 ### Configuration use bower cli
 * `bower-support`: *Optional* Allow to use bower to install packages into our resource (Bower dependency has to be in our package.json). (Default: false)
+* `bower-args`: *Optional* Allow to add extra args to bower install command. (Default: "--allow-root >&2")
 
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `
