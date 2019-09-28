@@ -70,18 +70,18 @@ Source Configuration
 * `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
 
 ### Configuration use for npm
-* `npm-args`: *Optional* Allow to add extra args to npm i / npm ci command. (Default: "--quiet >&2")
+* `npm-args`: *Optional* Allow to add extra args to npm i / npm ci command. (Default: "-q")
 
 ### Configuration use npm ci command
 * `npm-ci-support`: *Optional* Allow to use npm ci instead of npm install to install the npm modules into our resource. (Default: false)
 
 ### Configuration use yarn cli
 * `yarn-support`: *Optional* Allow to use yarn to install the npm modules into our resource. (Default: false)
-* `yarn-args`: *Optional* Allow to add extra args to yarn install command. (Default: ">&2")
+* `yarn-args`: *Optional* Allow to add extra args to yarn install command. (Default: "")
 
 ### Configuration use bower cli
 * `bower-support`: *Optional* Allow to use bower to install packages into our resource (Bower dependency has to be in our package.json). (Default: false)
-* `bower-args`: *Optional* Allow to add extra args to bower install command. (Default: "--allow-root >&2")
+* `bower-args`: *Optional* Allow to add extra args to bower install command. (Default: "-q --allow-root")
 
 ```
 Whatever tool you use to generate the encoded username and password string, try to encode the string admin:admin123, which should result in YWRtaW46YWRtaW4xMjM=. `

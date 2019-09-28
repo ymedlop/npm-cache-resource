@@ -42,26 +42,28 @@ NODE_ENV=$(jq -r '.source["node-env"] // "development"' < $PAYLOAD)
 # Configuration for projects living in subdirectories
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
 
+# Configuration for enable more verbosity
+CI_VERBOSE=$(jq -r '.source["ci-verbose"] // "false"' < $PAYLOAD)
+
 # Configuration use for npm and npm ci command
-NPM_ARGS=$(jq -r '.source["npm-ci-args"] // "--quiet >&2"' < $PAYLOAD)
+NPM_ARGS=$(jq -r '.source["npm-ci-args"] // "-q"' < $PAYLOAD)
 
 # Configuration use npm ci command
 NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
 
 # Configuration use yarn cli
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
-YARN_ARGS=$(jq -r '.source["yarn-args"] // ">&2"' < $PAYLOAD)
+YARN_ARGS=$(jq -r '.source["yarn-args"] // ""' < $PAYLOAD)
 
 # Configuration use bower cli
 BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
-BOWER_ARGS=$(jq -r '.source["bower-args"] // "--allow-root >&2"' < $PAYLOAD)
+BOWER_ARGS=$(jq -r '.source["bower-args"] // "-q --allow-root"' < $PAYLOAD)
 
 # go into the cloned sorce code
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
 
 # configure proxy
 if [ -n "$http_proxy" ]; then
-    echo "Set npm httproxy: "$http_proxy"" >&2
     npm config set proxy $http_proxy
     npm config set https-proxy $https_proxy
 fi
@@ -81,7 +83,6 @@ else
         echo "_auth="$TOKEN"" >> ~/.npmrc
     fi
     if [ -n "$REGISTRY" ]; then
-        echo "Set Private Registry: "$REGISTRY"" >&2
         npm config set registry $REGISTRY
     fi
 fi
