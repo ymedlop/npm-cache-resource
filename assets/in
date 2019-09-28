@@ -42,11 +42,9 @@ NODE_ENV=$(jq -r '.source["node-env"] // "development"' < $PAYLOAD)
 # Configuration for projects living in subdirectories
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
 
-# Configuration for enable more verbosity
-CI_VERBOSE=$(jq -r '.source["ci-verbose"] // "false"' < $PAYLOAD)
-
 # Configuration use for npm and npm ci command
-NPM_ARGS=$(jq -r '.source["npm-ci-args"] // "-q"' < $PAYLOAD)
+NPM_AUDIT=$(jq -r '.source["npm-audit"] // false' < $PAYLOAD)
+NPM_ARGS=$(jq -r '.source["npm-args"] // "-q"' < $PAYLOAD)
 
 # Configuration use npm ci command
 NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
@@ -85,6 +83,11 @@ else
     if [ -n "$REGISTRY" ]; then
         npm config set registry $REGISTRY
     fi
+fi
+
+# Turn off npm audit when installing all packages to avoid pipeline fail.
+if [ "NPM_AUDIT" == "false" ]; then
+    npm set audit false
 fi
 
 # use yarn, npm ci, npm install or bower to pull down packages
