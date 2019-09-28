@@ -70,7 +70,6 @@ Source Configuration
 * `project-path`: *Optional* Relative path of subdirectory containing the project (i.e. where the `package.json` is).
 
 ### Configuration use for npm
-* `npm-audit`: *Optional* Turn on / off npm audit when installing all packages to avoid pipeline fail. (Default: false)
 * `npm-args`: *Optional* Allow to add extra args to npm i / npm ci command. (Default: "-q")
 
 ### Configuration use npm ci command

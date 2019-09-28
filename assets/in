@@ -43,19 +43,18 @@ NODE_ENV=$(jq -r '.source["node-env"] // "development"' < $PAYLOAD)
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
 
 # Configuration use for npm and npm ci command
-NPM_AUDIT=$(jq -r '.source["npm-audit"] // false' < $PAYLOAD)
-NPM_ARGS=$(jq -r '.source["npm-args"] // "-q"' < $PAYLOAD)
+NPM_ARGS=$(jq -r '.source["npm-args"] // "-q >&2"' < $PAYLOAD)
 
 # Configuration use npm ci command
 NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
 
 # Configuration use yarn cli
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
-YARN_ARGS=$(jq -r '.source["yarn-args"] // ""' < $PAYLOAD)
+YARN_ARGS=$(jq -r '.source["yarn-args"] // ">&2"' < $PAYLOAD)
 
 # Configuration use bower cli
 BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
-BOWER_ARGS=$(jq -r '.source["bower-args"] // "-q --allow-root"' < $PAYLOAD)
+BOWER_ARGS=$(jq -r '.source["bower-args"] // "-q --allow-root >&2"' < $PAYLOAD)
 
 # go into the cloned sorce code
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
@@ -85,22 +84,17 @@ else
     fi
 fi
 
-# Turn off npm audit when installing all packages to avoid pipeline fail.
-if [ "NPM_AUDIT" == "false" ]; then
-    npm set audit false
-fi
-
 # use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
-    NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS
+    eval "NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS"
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
-    NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS
+    eval "NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS"
 else
-    NODE_ENV=$NODE_ENV && npm i $NPM_ARGS
+    eval "NODE_ENV=$NODE_ENV && npm i $NPM_ARGS"
 fi
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
-    node_modules/.bin/bower install $BOWER_ARGS
+    eval "node_modules/.bin/bower install $BOWER_ARGS"
     mv bower_components "$DEST_DIR/"
 fi
 
