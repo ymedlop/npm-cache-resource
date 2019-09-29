@@ -96,7 +96,8 @@ else
 fi
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
-    node_modules/.bin/bower install $BOWER_ARGS >&2
+    npm i -sg bower >&2
+    bower install $BOWER_ARGS
     mv bower_components "$DEST_DIR/"
 fi
 
