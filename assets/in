@@ -88,15 +88,19 @@ fi
 
 # use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
+    echo "yarn install $YARN_ARGS"
     NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS >&2
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
+    echo "npm ci $NPM_ARGS"
     NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS >&2
 else
+    echo "npm i $NPM_ARGS"
     NODE_ENV=$NODE_ENV && npm i $NPM_ARGS >&2
 fi
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
     npm i -sg bower >&2
+    echo "bower install $BOWER_ARGS"
     bower install $BOWER_ARGS
     mv bower_components "$DEST_DIR/"
 fi
