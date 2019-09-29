@@ -86,12 +86,14 @@ fi
 
 # use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
-    eval "NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS"
+    CI_OUTPUT=$(NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS)
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
-    eval "NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS"
+    CI_OUTPUT=$(NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS)
 else
-    eval "NODE_ENV=$NODE_ENV && npm i $NPM_ARGS"
+    CI_OUTPUT=$(NODE_ENV=$NODE_ENV && npm i $NPM_ARGS)
 fi
+
+echo $CI_OUTPUT
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
     eval "node_modules/.bin/bower install $BOWER_ARGS"
