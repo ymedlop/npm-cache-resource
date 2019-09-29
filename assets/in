@@ -45,14 +45,14 @@ NODE_ENV=$(jq -r '.source["node-env"] // "development"' < $PAYLOAD)
 PROJECT_PATH=$(jq -r '.source["project-path"] // ""' < $PAYLOAD)
 
 # Configuration use for npm and npm ci command
-NPM_ARGS=$(jq -r '.source["npm-args"] // "-q"' < $PAYLOAD)
+NPM_CI_ARGS=$(jq -r '.source["npm-args"] // "-q"' < $PAYLOAD)
 
 # Configuration use npm ci command
 NPM_CI_SUPPORT=$(jq -r '.source["npm-ci-support"] // false' < $PAYLOAD)
 
 # Configuration use yarn cli
 YARN_SUPPORT=$(jq -r '.source["yarn-support"] // false' < $PAYLOAD)
-YARN_ARGS=$(jq -r '.source["yarn-args"] // ""' < $PAYLOAD)
+YARN_CI_ARGS=$(jq -r '.source["yarn-args"] // ""' < $PAYLOAD)
 
 # Configuration use bower cli
 BOWER_SUPPORT=$(jq -r '.source["bower-support"] // false' < $PAYLOAD)
@@ -88,14 +88,14 @@ fi
 
 # use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
-    echo "yarn install $YARN_ARGS"
-    NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS >&2
+    echo "yarn install $YARN_CI_ARGS"
+    NODE_ENV=$NODE_ENV && yarn install $YARN_CI_ARGS >&2
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
-    echo "npm ci $NPM_ARGS"
-    NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS >&2
+    echo "npm ci $NPM_CI_ARGS"
+    NODE_ENV=$NODE_ENV && npm ci $NPM_CI_ARGS >&2
 else
-    echo "npm i $NPM_ARGS"
-    NODE_ENV=$NODE_ENV && npm i $NPM_ARGS >&2
+    echo "npm i $NPM_CI_ARGS"
+    NODE_ENV=$NODE_ENV && npm i $NPM_CI_ARGS >&2
 fi
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
