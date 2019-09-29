@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 if [ "$TRACE" == "true" ]; then
-    set -xo pipefail
+    set -xeo pipefail
 else
-    set -o pipefail
+    set -eo pipefail
 fi
 
 # functions from the git resource for configuring git and ssh
