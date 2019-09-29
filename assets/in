@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-[ "$TRACE" == "true" ] && set -x
-set -e
 set -o pipefail
+
+if [ "$TRACE" == "true" ] then
+    set -x
+fi
 
 # functions from the git resource for configuring git and ssh
 source /opt/resource/git/common.sh
@@ -86,14 +88,12 @@ fi
 
 # use yarn, npm ci, npm install or bower to pull down packages
 if [ "$YARN_SUPPORT" != "false" ]; then
-    CI_OUTPUT=$(NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS)
+    eval "NODE_ENV=$NODE_ENV && yarn install $YARN_ARGS"
 elif [ "$NPM_CI_SUPPORT" != "false" ]; then
-    CI_OUTPUT=$(NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS)
+    eval "NODE_ENV=$NODE_ENV && npm ci $NPM_ARGS"
 else
-    CI_OUTPUT=$(NODE_ENV=$NODE_ENV && npm i $NPM_ARGS)
+    eval "NODE_ENV=$NODE_ENV && npm i $NPM_ARGS"
 fi
-
-echo $CI_OUTPUT
 
 if [ "$BOWER_SUPPORT" != "false" ]; then
     eval "node_modules/.bin/bower install $BOWER_ARGS"
