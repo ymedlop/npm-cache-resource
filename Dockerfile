@@ -60,4 +60,7 @@ RUN chmod +x /opt/resource/check /opt/resource/in /opt/resource/out
 # install npm-clip-login to help us with the npm login
 RUN npm install -g npm-cli-login
 
+# install bower
+RUN npm install -g bower
+
 HEALTHCHECK NONE
