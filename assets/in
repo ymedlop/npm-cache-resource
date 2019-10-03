@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
-TRACE=$(jq -r '.source["trace"] // "false"' < $PAYLOAD)
-
-if [ "$TRACE" == "true" ]; then
-    set -xeo pipefail
-else
-    set -eo pipefail
-fi
+set -eo pipefail
 
 # functions from the git resource for configuring git and ssh
 source /opt/resource/git/common.sh
@@ -27,6 +21,8 @@ PAYLOAD=$(echo /tmp/git-resource-request.*)
 load_pubkey $PAYLOAD
 configure_git_ssl_verification $PAYLOAD
 configure_credentials $PAYLOAD
+
+TRACE=$(jq -r '.source["trace"] // "false"' < $PAYLOAD)
 
 # Configuration to access a NPM Registry or Private Registry by User and Password.
 REGISTRY_URL=$(jq -r '.source["registry-url"] // ""' < $PAYLOAD)
@@ -61,6 +57,12 @@ BOWER_ARGS=$(jq -r '.source["bower-args"] // "-q --allow-root"' < $PAYLOAD)
 
 # go into the cloned sorce code
 cd "$GIT_DEST_DIR/$PROJECT_PATH"
+
+if [ "$TRACE" == "true" ]; then
+    set -x
+else
+    set +x
+fi
 
 # configure proxy
 if [ -n "$http_proxy" ]; then
