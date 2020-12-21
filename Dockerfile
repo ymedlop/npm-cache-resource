@@ -45,10 +45,11 @@ RUN git config --global user.email "git@localhost" && \
 
 # install git resource (and disable LFS, which we happen not to need)
 RUN mkdir -p /opt/resource/git && \
-    wget "https://github.com/concourse/git-resource/archive/v${GIT_RESOURCE_VERSION}.zip" -O /opt/resource/git/git-resource.zip && \
+    wget https://github.com/concourse/git-resource/archive/v${GIT_RESOURCE_VERSION}.zip -O /opt/resource/git/git-resource.zip && \
     unzip /opt/resource/git/git-resource.zip -d /opt/resource/git && \
-    mv "/opt/resource/git/git-resource-${GIT_RESOURCE_VERSION}/assets/*" /opt/resource/git && \
-    rm -r /opt/resource/git/git-resource.zip "/opt/resource/git/git-resource-${GIT_RESOURCE_VERSION}" && \
+    ls /opt/resource/git/git-resource-${GIT_RESOURCE_VERSION}/assets && \
+    mv /opt/resource/git/git-resource-${GIT_RESOURCE_VERSION}/assets/* /opt/resource/git && \
+    rm -r /opt/resource/git/git-resource.zip /opt/resource/git/git-resource-${GIT_RESOURCE_VERSION} && \
     sed -i '/git lfs/s/^/echo /' /opt/resource/git/in
 
 # install npm cache resource
