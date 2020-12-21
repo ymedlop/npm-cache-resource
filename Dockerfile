@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:14
+FROM mhart/alpine-node:15
 
 ENV GIT_RESOURCE_VERSION v1.10.0.0
 
