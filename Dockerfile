@@ -4,7 +4,6 @@ FROM mhart/alpine-node:latest
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
-ARG GIT_RESOURCE="https://github.com/concourse/git-resource/archive/v1.10.0.zip"
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="npm-cache-resource" \
@@ -45,7 +44,7 @@ RUN git config --global user.email "git@localhost" && \
 
 # install git resource (and disable LFS, which we happen not to need)
 RUN mkdir -p /opt/resource/git && \
-    wget $GIT_RESOURCE -O /opt/resource/git/git-resource.zip && \
+    wget https://github.com/concourse/git-resource/archive/v1.10.0.zip -O /opt/resource/git/git-resource.zip && \
     unzip /opt/resource/git/git-resource.zip -d /opt/resource/git && \
     mv /opt/resource/git/git-resource-master/assets/* /opt/resource/git && \
     rm -r /opt/resource/git/git-resource.zip /opt/resource/git/git-resource-master && \
