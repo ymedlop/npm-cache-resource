@@ -21,7 +21,7 @@ Versions
 |  [9](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v9/Dockerfile) | [mhart/alpine-node:9](https://github.com/mhart/alpine-node)  | No  |  Yes | No |
 |  [8](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v8/Dockerfile) | [mhart/alpine-node:8](https://github.com/mhart/alpine-node)  | No  |  Yes | No |
 |  [7](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v7/Dockerfile) | [mhart/alpine-node:7](https://github.com/mhart/alpine-node)  | No  |  No | No |
-|  [6](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v6/Dockerfile) | [mhart/alpine-node:6](https://github.com/mhart/alpine-node)  | No  |  Yes | No |
+|  [6](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v6/Dockerfile) | [mhart/alpine-node:6](https://github.com/mhart/alpine-node)  | No  |  No | No |
 |  [4](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v4/Dockerfile) | [mhart/alpine-node:4](https://github.com/mhart/alpine-node)  | No  |  No | No |
 |  [0.12](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v0.12/Dockerfile) | [mhart/alpine-node:0.12](https://github.com/mhart/alpine-node)  | No  |  No | No |
 |  [0.10](https://github.com/ymedlop-sandbox/npm-cache-resource/blob/alpine-node-v0.10/Dockerfile) | [mhart/alpine-node:0.10](https://github.com/mhart/alpine-node)  | No  |  No | No |
