@@ -34,7 +34,7 @@ resource_types:
 
   - name: npm-cache
     type: docker-image
-    source: {repository: ymedlop/npm-cache-resource, tag: "4"}
+    source: {repository: ymedlop/npm-cache-resource, tag: "12"}
 ```
 
 
@@ -158,7 +158,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "6"}
+            source: {repository: mhart/alpine-node, tag: "12"}
 
           inputs:
             - name: repo
@@ -190,7 +190,7 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: mhart/alpine-node, tag: "6"}
+            source: {repository: mhart/alpine-node, tag: "12"}
 
           inputs:
             - name: repo
