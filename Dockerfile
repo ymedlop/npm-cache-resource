@@ -1,7 +1,5 @@
 FROM mhart/alpine-node:10
 
-ENV GIT_RESOURCE_VERSION v1.10.0
-
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
