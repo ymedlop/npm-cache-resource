@@ -28,8 +28,8 @@ RUN apk add --update \
     libpng-dev \
     nasm \
     build-base \
-    python \
-    python-dev \
+    python3 \
+    python3-dev \
     # Fix problem with some dependencies: https://github.com/ymedlop/npm-cache-resource/issues/39
     libtool \
     automake \
