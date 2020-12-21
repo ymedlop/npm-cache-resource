@@ -1,7 +1,5 @@
 FROM mhart/alpine-node:latest
 
-MAINTAINER Yeray Medina López <ymedlop@gmail.com>
-
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
