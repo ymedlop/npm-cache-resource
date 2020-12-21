@@ -4,7 +4,7 @@ FROM mhart/alpine-node:latest
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
-ARG GIT_RESOURCE="v1.10.0"
+ARG GIT_RESOURCE_VERSION="v1.10.0"
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="npm-cache-resource" \
