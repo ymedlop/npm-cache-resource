@@ -1,6 +1,10 @@
 [![](https://images.microbadger.com/badges/version/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/ymedlop/npm-cache-resource.svg)](https://microbadger.com/images/ymedlop/npm-cache-resource "Get your own license badge on microbadger.com")
 [![](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)](https://img.shields.io/docker/pulls/ymedlop/npm-cache-resource.svg)
-  
+
+This project has not been built nor maintained since December 2020 and has been archived
+
+If you are interested in working on the project, even when archived you can still create a fork of it.
+
 npm-cache-resource
 ==================
 
